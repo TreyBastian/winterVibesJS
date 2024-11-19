@@ -15,10 +15,7 @@ export const MIN_SIZE = 1;
 export const MAX_SIZE = 4;
 
 // maximum speed of a falling snowflake
-export const MAX_SPEED = 1;
+export const MAX_SPEED = 0.1;
 
 // minimum speed of a snowflake falling
-export const MIN_SPEED = 0.5;
-
-// threshold for how fast snowflakes can go and have horizontal movement
-export const SWAY_THRESHOLD = 0.8;
+export const MIN_SPEED = 0.08;

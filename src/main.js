@@ -8,6 +8,16 @@ import {
 } from "./snow_accumulator";
 
 /**
+ * @type{Array.<Snowflake>}
+ */
+const snowFlakes = [];
+
+/**
+ * @type SnowAccumulator
+ */
+const floor = createSnowAccumulator(CANVAS_HEIGHT);
+
+/**
  * @type {HTMLCanvasElement}
  */
 let canvas;
@@ -17,14 +27,7 @@ let canvas;
  */
 let ctx;
 
-/**
- * @type{Array.<Snowflake>}
- */
-const snowFlakes = [];
-
 let lastSpawn = 0;
-let floor = createSnowAccumulator(CANVAS_HEIGHT);
-
 let lastFrame = 0;
 let fps = 0;
 
@@ -42,19 +45,21 @@ function init() {
 }
 
 /**
- * @param delta {DOMHighResTimeStamp}
+ * @param time {DOMHighResTimeStamp}
  */
-function gameLoop(delta) {
-  fps = Math.round(1 / ((delta - lastFrame) / 1000));
+function gameLoop(time) {
+  const delta = time - lastFrame;
+  fps = Math.round(1 / (delta / 1000));
+
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-  if (delta - lastSpawn > 500 && snowFlakes.length < MAX_PARTICAL_COUNT) {
+  if (time - lastSpawn > 500 && snowFlakes.length < MAX_PARTICAL_COUNT) {
     for (let i = 0; i < Math.floor(Math.random() * 2); i++) {
       snowFlakes.push(createSnowflake());
     }
   }
 
   snowFlakes.forEach((flake, idx) => {
-    moveSnowflake(flake);
+    moveSnowflake(flake, delta);
     if (checkCollision(floor, flake)) {
       snowFlakes[idx] = createSnowflake();
     }
@@ -63,7 +68,6 @@ function gameLoop(delta) {
 
   drawSnowAccumulator(ctx, floor);
   ctx.fillText("FPS: " + fps, 10, 30);
-  lastFrame = delta;
-
+  lastFrame = time;
   window.requestAnimationFrame(gameLoop);
 }

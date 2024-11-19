@@ -4,7 +4,6 @@ import {
   MAX_SPEED,
   MIN_SIZE,
   MIN_SPEED,
-  SWAY_THRESHOLD,
 } from "./config";
 
 /**
@@ -35,16 +34,8 @@ export function drawSnowflake({ x, y, size }, ctx) {
 
 /**
  * @param {Snowflake} snowflake
+ * @param {number} delta
  */
-export function moveSnowflake(snowflake) {
-  snowflake.y += snowflake.speed;
-  const sway = Math.random() < 0.5 && snowflake.speed < SWAY_THRESHOLD;
-  if (sway) {
-    const direction = Math.random() < 0.5;
-    if (direction) {
-      snowflake.x += (snowflake.speed * 5) / 10;
-    } else {
-      snowflake.x -= (snowflake.speed * 5) / 10;
-    }
-  }
+export function moveSnowflake(snowflake, delta) {
+  snowflake.y += snowflake.speed * delta;
 }
