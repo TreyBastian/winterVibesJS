@@ -10,5 +10,12 @@ declare global {
   type SnowAccumulator = {
     accumulator: number;
     y: number;
+    height: number;
+    x: number;
+    width: number;
+  };
+
+  type Plow = {
+    left: boolean;
   };
 }

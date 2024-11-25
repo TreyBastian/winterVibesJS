@@ -1,10 +1,17 @@
 import "./style.css";
-import { CANVAS_HEIGHT, CANVAS_WIDTH, MAX_PARTICAL_COUNT } from "./config";
+import {
+  CANVAS_HEIGHT,
+  CANVAS_WIDTH,
+  FLOOR_SICE_COUNT,
+  MAX_FLOOR_HEIGHT,
+  MAX_PARTICAL_COUNT,
+} from "./config";
 import { createSnowflake, drawSnowflake, moveSnowflake } from "./snowflake";
 import {
+  accumulateSnow,
   checkCollision,
   createSnowAccumulator,
-  drawSnowAccumulator,
+  drawSnowAccumulators,
 } from "./snow_accumulator";
 
 /**
@@ -13,10 +20,11 @@ import {
 const snowFlakes = [];
 
 /**
- * @type SnowAccumulator
+ * @type SnowAccumulator[]
  */
-const floor = createSnowAccumulator(CANVAS_HEIGHT);
+const floor = [];
 
+const sectionSize = CANVAS_WIDTH / FLOOR_SICE_COUNT;
 /**
  * @type {HTMLCanvasElement}
  */
@@ -29,7 +37,8 @@ let ctx;
 
 let lastSpawn = 0;
 let lastFrame = 0;
-let fps = 0;
+
+let isPlowing = false;
 
 window.onload = init;
 
@@ -41,6 +50,12 @@ function init() {
   canvas.width = CANVAS_WIDTH;
   canvas.height = CANVAS_HEIGHT;
 
+  for (let i = 0; i < FLOOR_SICE_COUNT; i++) {
+    floor.push(
+      createSnowAccumulator(i * sectionSize, CANVAS_HEIGHT, sectionSize),
+    );
+  }
+
   window.requestAnimationFrame(gameLoop);
 }
 
@@ -49,7 +64,6 @@ function init() {
  */
 function gameLoop(time) {
   const delta = time - lastFrame;
-  fps = Math.round(1 / (delta / 1000));
 
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   if (time - lastSpawn > 500 && snowFlakes.length < MAX_PARTICAL_COUNT) {
@@ -60,14 +74,35 @@ function gameLoop(time) {
 
   snowFlakes.forEach((flake, idx) => {
     moveSnowflake(flake, delta);
-    if (checkCollision(floor, flake)) {
+    const floorIdx = Math.floor(flake.x / sectionSize);
+
+    if (checkCollision(floor[floorIdx], flake)) {
+      if (!isPlowing) {
+        accumulateSnow(floor[floorIdx], flake);
+      }
       snowFlakes[idx] = createSnowflake();
     }
     drawSnowflake(flake, ctx);
   });
 
-  drawSnowAccumulator(ctx, floor);
-  ctx.fillText("FPS: " + fps, 10, 30);
+  const avgHeight =
+    floor.reduce((acc, sa) => acc + sa.height, 0) / floor.length;
+
+  if (avgHeight > MAX_FLOOR_HEIGHT) {
+    isPlowing = true;
+  }
+
+  if (isPlowing) {
+    // plow the snow and reset the accumulators
+    floor.forEach((sa) => {
+      sa.height = 0;
+      sa.accumulator = 0;
+    });
+    isPlowing = false;
+  }
+
+  drawSnowAccumulators(ctx, floor);
+
   lastFrame = time;
   window.requestAnimationFrame(gameLoop);
 }
