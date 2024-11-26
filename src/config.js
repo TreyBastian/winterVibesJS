@@ -1,29 +1,64 @@
-// canvas size - I chose these sizes for 16:9 aspect ratio and really pixely
-export const CANVAS_WIDTH = 320;
-export const CANVAS_HEIGHT = 180;
+// default configuration values
+const PARAM_DEFAULTS = [
+  { name: "v", value: 1 }, // version
+  { name: "cw", value: 640 }, // canvas width
+  { name: "ch", value: 360 }, // canvas height
+  { name: "smx", value: 40 }, // snow max
+  { name: "smnsz", value: 1 }, // snow min size
+  { name: "smxsz", value: 4 }, // snow max size
+  { name: "smxspd", value: 0.07 }, // snow max speed
+  { name: "snmnspd", value: 0.04 }, // snow min speed
+  { name: "pspd", value: 0.1 }, // plow speed
+  { name: "pd", value: "left" }, // plow direction
+  { name: "gamax", value: 4 }, // ground accumulator max
+  { name: "gas", value: 10 }, // ground accumulatior slices
+];
 
-// number of collisions required to shift the snowlevel up
-export const FLOOR_RAISE_THRESHOLD = 4;
+/**
+ * @returns {Config} configuration object
+ * gets configuration from query parameters or defaults
+ */
+function getConfiguration() {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (PARAM_DEFAULTS.some(({ name }) => !urlParams.has(name))) {
+    setParamsAndRefresh(PARAM_DEFAULTS);
+  }
+  return {
+    version: parseInt(urlParams.get("v")),
+    canvas: {
+      width: parseInt(urlParams.get("cw")),
+      height: parseInt(urlParams.get("ch")),
+    },
+    snow: {
+      max: parseInt(urlParams.get("smx")),
+      minSize: parseInt(urlParams.get("smnsz")),
+      maxSize: parseInt(urlParams.get("smxsz")),
+      maxSpeed: parseFloat(urlParams.get("smxspd")),
+      minSpeed: parseFloat(urlParams.get("snmnspd")),
+    },
+    plow: {
+      speed: parseFloat(urlParams.get("pspd")),
+      // @ts-ignore -- I dunno how to get ts / jsdoc to be ok with this
+      direction: urlParams.get("pd"),
+    },
+    groundAccumulator: {
+      max: parseInt(urlParams.get("gamax")),
+      slices: parseInt(urlParams.get("gas")),
+    },
+  };
+}
 
-// how many sections the floor is divided into
-export const FLOOR_SICE_COUNT = 16;
+/**
+ * @param {Array<{name: string, value: any}>} params
+ */
+export function setParamsAndRefresh(params) {
+  const urlParams = new URLSearchParams(window.location.search);
+  params.forEach(({ name, value }) => {
+    urlParams.set(name, value);
+  });
+  window.location.search = urlParams.toString();
+}
 
-// number of snowflakes to render
-export const MAX_PARTICAL_COUNT = 30;
+const config = getConfiguration();
 
-export const MAX_FLOOR_HEIGHT = 10;
-
-// minimum size of snowflake
-export const MIN_SIZE = 1;
-
-// maximum size of snowflake
-export const MAX_SIZE = 4;
-
-// maximum speed of a falling snowflake
-export const MAX_SPEED = 0.07;
-
-// minimum speed of a snowflake falling
-export const MIN_SPEED = 0.04;
-
-// speed of the plow
-export const PLOW_SPEED = 0.1;
+export default config;

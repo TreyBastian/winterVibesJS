@@ -1,5 +1,28 @@
 export {};
 declare global {
+  type Config = {
+    version: number;
+    canvas: {
+      width: number;
+      height: number;
+    };
+    snow: {
+      max: number;
+      minSize: number;
+      maxSize: number;
+      minSpeed: number;
+      maxSpeed: number;
+    };
+    groundAccumulator: {
+      max: number;
+      slices: number;
+    };
+    plow: {
+      speed: number;
+      direction: "left" | "right";
+    };
+  };
+
   type Snowflake = {
     x: number;
     y: number;

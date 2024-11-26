@@ -1,20 +1,19 @@
-import {
-  CANVAS_WIDTH,
-  MAX_SIZE,
-  MAX_SPEED,
-  MIN_SIZE,
-  MIN_SPEED,
-} from "./config";
+import Config from "./config";
 
 /**
  * @returns {Snowflake}
  */
 export function createSnowflake() {
   return {
-    x: Math.floor(Math.random() * CANVAS_WIDTH),
+    x: Math.floor(Math.random() * Config.canvas.width),
     y: -1,
-    speed: Math.random() * (MIN_SPEED - MAX_SPEED) + MAX_SPEED,
-    size: Math.floor(Math.random() * (MIN_SIZE - MAX_SIZE) + MAX_SIZE),
+    speed:
+      Math.random() * (Config.snow.minSpeed - Config.snow.maxSpeed) +
+      Config.snow.maxSpeed,
+    size: Math.floor(
+      Math.random() * (Config.snow.minSize - Config.snow.maxSize) +
+        Config.snow.maxSize,
+    ),
   };
 }
 

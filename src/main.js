@@ -1,11 +1,5 @@
 import "./style.css";
-import {
-  CANVAS_HEIGHT,
-  CANVAS_WIDTH,
-  FLOOR_SICE_COUNT,
-  MAX_FLOOR_HEIGHT,
-  MAX_PARTICAL_COUNT,
-} from "./config";
+import Config from "./config";
 import { createSnowflake, drawSnowflake, moveSnowflake } from "./snowflake";
 import {
   accumulateSnow,
@@ -24,7 +18,7 @@ const snowFlakes = [];
  */
 const floor = [];
 
-const sectionSize = CANVAS_WIDTH / FLOOR_SICE_COUNT;
+const sectionSize = Config.canvas.width / Config.groundAccumulator.slices;
 /**
  * @type {HTMLCanvasElement}
  */
@@ -47,12 +41,12 @@ function init() {
   canvas = document.getElementById("main");
 
   ctx = canvas.getContext("2d");
-  canvas.width = CANVAS_WIDTH;
-  canvas.height = CANVAS_HEIGHT;
+  canvas.width = Config.canvas.width;
+  canvas.height = Config.canvas.height;
 
-  for (let i = 0; i < FLOOR_SICE_COUNT; i++) {
+  for (let i = 0; i < Config.groundAccumulator.slices; i++) {
     floor.push(
-      createSnowAccumulator(i * sectionSize, CANVAS_HEIGHT, sectionSize),
+      createSnowAccumulator(i * sectionSize, Config.canvas.height, sectionSize),
     );
   }
 
@@ -65,8 +59,8 @@ function init() {
 function gameLoop(time) {
   const delta = time - lastFrame;
 
-  ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-  if (time - lastSpawn > 500 && snowFlakes.length < MAX_PARTICAL_COUNT) {
+  ctx.clearRect(0, 0, Config.canvas.width, Config.canvas.height);
+  if (time - lastSpawn > 500 && snowFlakes.length < Config.snow.max) {
     for (let i = 0; i < Math.floor(Math.random() * 2); i++) {
       snowFlakes.push(createSnowflake());
     }
@@ -88,7 +82,7 @@ function gameLoop(time) {
   const avgHeight =
     floor.reduce((acc, sa) => acc + sa.height, 0) / floor.length;
 
-  if (avgHeight > MAX_FLOOR_HEIGHT) {
+  if (avgHeight > Config.groundAccumulator.max) {
     isPlowing = true;
   }
 

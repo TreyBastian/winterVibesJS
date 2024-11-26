@@ -1,4 +1,4 @@
-import { CANVAS_HEIGHT, CANVAS_WIDTH, FLOOR_RAISE_THRESHOLD } from "./config";
+import Config from "./config";
 
 /**
  * @param {number} y
@@ -37,7 +37,7 @@ export function checkCollision(sa, { y }) {
 export function accumulateSnow(sa, { size }) {
   sa.accumulator += size;
 
-  if (sa.accumulator % FLOOR_RAISE_THRESHOLD == 0) {
+  if (sa.accumulator % Config.groundAccumulator.max == 0) {
     sa.height += 1;
   }
 }
@@ -54,9 +54,9 @@ export function drawSnowAccumulators(ctx, accumulators) {
 
   ctx.beginPath();
   noramlized.forEach(([x, y]) => ctx.lineTo(x, y));
-  ctx.lineTo(CANVAS_WIDTH, noramlized[noramlized.length - 1][1]);
-  ctx.lineTo(CANVAS_WIDTH, CANVAS_HEIGHT);
-  ctx.lineTo(0, CANVAS_HEIGHT);
+  ctx.lineTo(Config.canvas.width, noramlized[noramlized.length - 1][1]);
+  ctx.lineTo(Config.canvas.width, Config.canvas.height);
+  ctx.lineTo(0, Config.canvas.height);
   ctx.fillStyle = "#fff";
   ctx.fill();
 }
