@@ -7,7 +7,6 @@ import {
   createSnowAccumulator,
   drawSnowAccumulators,
   resetSnowAccumulator,
-  snowAccumulatorCollisionX,
 } from "./snow_accumulator";
 import { createPlow, drawPlow, movePlow, plowDone } from "./plow";
 
