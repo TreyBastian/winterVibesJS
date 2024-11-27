@@ -1,4 +1,3 @@
-import "./style.css";
 import Config from "./config.js";
 import { createSnowflake, drawSnowflake, moveSnowflake } from "./snowflake.js";
 import {
