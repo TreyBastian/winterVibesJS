@@ -1,7 +1,7 @@
 # winterVibesJS
 No build JS twitch wintery overlay.
 
-Run locally and tweak or add the Github page (COMING SOON) as a browser source.
+Run locally and tweak or add the Github page https://treybastian.github.io/winterVibesJS as a browser source.
 
 ## 0 Dependencies required!
 This project has no required dependencies.
@@ -12,3 +12,5 @@ Everything uses JSDoc
 
 
 # THIS IS NOT DONE YET AND IS A WIP
+
+# WARNING The query parameters are versioned, but the version isn't enforced yet bookmarks may be unstable

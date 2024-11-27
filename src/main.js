@@ -1,15 +1,13 @@
-import "./style.css";
-import Config from "./config";
-import { createSnowflake, drawSnowflake, moveSnowflake } from "./snowflake";
+import Config from "./config.js";
+import { createSnowflake, drawSnowflake, moveSnowflake } from "./snowflake.js";
 import {
   accumulateSnow,
   snowAccumulatorCollisionY,
   createSnowAccumulator,
   drawSnowAccumulators,
   resetSnowAccumulator,
-  snowAccumulatorCollisionX,
-} from "./snow_accumulator";
-import { createPlow, drawPlow, movePlow, plowDone } from "./plow";
+} from "./snow_accumulator.js";
+import { createPlow, drawPlow, movePlow, plowDone } from "./plow.js";
 import { toggleModal } from "./contextMenu";
 
 // Modals & buttons

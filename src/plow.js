@@ -1,5 +1,5 @@
-import Config from "./config";
-import { drawSprite } from "./sprites";
+import Config from "./config.js";
+import { drawSprite } from "./sprites.js";
 
 /**
  * @returns {Plow}
