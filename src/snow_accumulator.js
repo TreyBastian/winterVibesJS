@@ -20,9 +20,24 @@ export function createSnowAccumulator(x, y, width, height = 0) {
  * @param {SnowAccumulator} sa
  * @param {Object} item
  * @param {number} item.y
+ * @returns {boolean}
  */
-export function checkCollision(sa, { y }) {
+export function snowAccumulatorCollisionY(sa, { y }) {
   if (y >= sa.y - sa.height) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * @param {SnowAccumulator} sa
+ * @param {Object} item
+ * @param {number} item.x
+ * @returns {boolean}
+ */
+export function snowAccumulatorCollisionX(sa, { x }) {
+  if (x >= sa.x && x <= sa.x + sa.width) {
     return true;
   }
 
@@ -43,18 +58,36 @@ export function accumulateSnow(sa, { size }) {
 }
 
 /**
+ * @param {SnowAccumulator} sa
+ */
+export function resetSnowAccumulator(sa) {
+  sa.accumulator = 0;
+  sa.height = 0;
+}
+
+/**
  * @param {CanvasRenderingContext2D} ctx
  * @param {SnowAccumulator[]} accumulators
+ * @param {Plow} plow
  */
-export function drawSnowAccumulators(ctx, accumulators) {
+export function drawSnowAccumulators(ctx, accumulators, plow) {
   const points = accumulators.map((sa) => [sa.x, sa.y - sa.height]);
   const avgHeight =
     accumulators.reduce((acc, sa) => acc + sa.height, 0) / accumulators.length;
-  const noramlized = points.map(([x, y]) => [x, y - avgHeight]);
+  const normalized = points
+    .map(([x, y]) => [x, y - avgHeight])
+    .filter(([x]) => !(plow && plow.direction === "left" && x >= plow.x));
 
   ctx.beginPath();
-  noramlized.forEach(([x, y]) => ctx.lineTo(x, y));
-  ctx.lineTo(Config.canvas.width, noramlized[noramlized.length - 1][1]);
+  normalized.forEach(([x, y]) => {
+    ctx.lineTo(x, y);
+  });
+  plow &&
+    normalized.length > 0 &&
+    ctx.lineTo(plow.x, normalized[normalized.length - 1][1]);
+  plow && ctx.lineTo(plow.x, Config.canvas.height);
+  !plow &&
+    ctx.lineTo(Config.canvas.width, normalized[normalized.length - 1][1]);
   ctx.lineTo(Config.canvas.width, Config.canvas.height);
   ctx.lineTo(0, Config.canvas.height);
   ctx.fillStyle = "#fff";

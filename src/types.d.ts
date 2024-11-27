@@ -19,7 +19,7 @@ declare global {
     };
     plow: {
       speed: number;
-      direction: "left" | "right";
+      direction: "left" | "right" | "random";
     };
   };
 
@@ -39,6 +39,11 @@ declare global {
   };
 
   type Plow = {
-    left: boolean;
+    speed: number;
+    x: number;
+    y: number;
+    height: number;
+    width: number;
+    direction: "left" | "right";
   };
 }

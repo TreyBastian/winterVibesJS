@@ -11,7 +11,7 @@ const PARAM_DEFAULTS = [
   { name: "pspd", value: 0.1 }, // plow speed
   { name: "pd", value: "left" }, // plow direction
   { name: "gamax", value: 4 }, // ground accumulator max
-  { name: "gas", value: 10 }, // ground accumulatior slices
+  { name: "gas", value: 20 }, // ground accumulatior slices
 ];
 
 /**
@@ -23,6 +23,7 @@ function getConfiguration() {
   if (PARAM_DEFAULTS.some(({ name }) => !urlParams.has(name))) {
     setParamsAndRefresh(PARAM_DEFAULTS);
   }
+
   return {
     version: parseInt(urlParams.get("v")),
     canvas: {

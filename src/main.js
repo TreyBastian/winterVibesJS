@@ -3,10 +3,13 @@ import Config from "./config";
 import { createSnowflake, drawSnowflake, moveSnowflake } from "./snowflake";
 import {
   accumulateSnow,
-  checkCollision,
+  snowAccumulatorCollisionY,
   createSnowAccumulator,
   drawSnowAccumulators,
+  resetSnowAccumulator,
+  snowAccumulatorCollisionX,
 } from "./snow_accumulator";
+import { createPlow, drawPlow, movePlow, plowDone } from "./plow";
 
 /**
  * @type{Array.<Snowflake>}
@@ -29,6 +32,11 @@ let canvas;
  */
 let ctx;
 
+/**
+ * @type {Plow}
+ */
+let plow;
+
 let lastSpawn = 0;
 let lastFrame = 0;
 
@@ -43,6 +51,7 @@ function init() {
   ctx = canvas.getContext("2d");
   canvas.width = Config.canvas.width;
   canvas.height = Config.canvas.height;
+  ctx.imageSmoothingEnabled = false;
 
   for (let i = 0; i < Config.groundAccumulator.slices; i++) {
     floor.push(
@@ -70,7 +79,7 @@ function gameLoop(time) {
     moveSnowflake(flake, delta);
     const floorIdx = Math.floor(flake.x / sectionSize);
 
-    if (checkCollision(floor[floorIdx], flake)) {
+    if (snowAccumulatorCollisionY(floor[floorIdx], flake)) {
       if (!isPlowing) {
         accumulateSnow(floor[floorIdx], flake);
       }
@@ -86,16 +95,18 @@ function gameLoop(time) {
     isPlowing = true;
   }
 
-  if (isPlowing) {
-    // plow the snow and reset the accumulators
-    floor.forEach((sa) => {
-      sa.height = 0;
-      sa.accumulator = 0;
-    });
-    isPlowing = false;
-  }
+  drawSnowAccumulators(ctx, floor, plow);
 
-  drawSnowAccumulators(ctx, floor);
+  if (isPlowing) {
+    plow ??= createPlow();
+    movePlow(plow, delta);
+    drawPlow(plow, ctx);
+    if (plowDone(plow)) {
+      isPlowing = false;
+      plow = null;
+      floor.forEach((sa) => resetSnowAccumulator(sa));
+    }
+  }
 
   lastFrame = time;
   window.requestAnimationFrame(gameLoop);
