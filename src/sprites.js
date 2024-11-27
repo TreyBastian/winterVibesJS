@@ -1,6 +1,6 @@
 function loadSpriteSheet() {
   const image = new Image();
-  image.src = "./sprite_sheet.png";
+  image.src = "./assets/sprite_sheet.png";
   return image;
 }
 const sheet = loadSpriteSheet();
