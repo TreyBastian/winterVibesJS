@@ -1,10 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
 *,
 *:after,
-*:befpre {
+*:before {
   box-sizing: border-box;
 }
 
 body {
+  font-family: "Pixelify Sans", sans-serif;
+  font-style: normal;
   background-color: #091e36;
   min-width: 100vw;
   min-height: 100vh;
@@ -19,4 +23,62 @@ canvas {
   width: 100%;
   height: 100%;
   image-rendering: pixelated;
+}
+
+.context-menu {
+  border-radius: 10px;
+  position: absolute;
+  text-align: center;
+  background-color: beige;
+  border: 1px solid black;
+}
+
+.context-menu ul {
+  padding: 0px;
+  margin: 0px;
+  min-width: 150px;
+  list-style: none;
+}
+
+.context-menu ul li {
+  border-radius: 10px;
+  padding-bottom: 7px;
+  padding-top: 7px;
+}
+
+.context-menu ul li a {
+  border-radius: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.context-menu ul li:hover {
+  border-radius: 10px;
+  background-color: bisque;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  text-align: center;
+  background-color: beige;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.modal-header {
+  font-size: 20px;
 }
