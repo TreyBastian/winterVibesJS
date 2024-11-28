@@ -84,7 +84,7 @@ export function drawSnowAccumulators(ctx, accumulators, plow) {
   });
   plow &&
     normalized.length > 0 &&
-    ctx.lineTo(plow.x, normalized[normalized.length - 1][1]);
+    ctx.lineTo(plow.x + 2, normalized[normalized.length - 1][1]);
   plow && ctx.lineTo(plow.x, Config.canvas.height);
   !plow &&
     ctx.lineTo(Config.canvas.width, normalized[normalized.length - 1][1]);

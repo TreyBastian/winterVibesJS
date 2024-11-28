@@ -98,7 +98,7 @@ function gameLoop(time) {
   if (isPlowing) {
     plow ??= createPlow();
     movePlow(plow, delta);
-    drawPlow(plow, ctx);
+    drawPlow(plow, ctx, time);
     if (plowDone(plow)) {
       isPlowing = false;
       plow = null;

@@ -1,17 +1,20 @@
+import config from "../vite.config.js";
 import Config from "./config.js";
-import { drawSprite } from "./sprites.js";
+import { drawSprite, loadSprite } from "./sprite.js";
 
+const SPRITE = await loadSprite("snowplow");
 /**
  * @returns {Plow}
  */
 export function createPlow() {
   return {
-    x: Config.plow.direction === "left" ? Config.canvas.width : -88,
-    y: Config.canvas.height - 56,
+    x:
+      Config.plow.direction === "left"
+        ? Config.canvas.width
+        : SPRITE.width * Config.plow.scale,
+    y: Config.canvas.height - SPRITE.height * Config.plow.scale,
     speed: Config.plow.speed,
     direction: Config.plow.direction,
-    height: 56,
-    width: 88,
   };
 }
 
@@ -30,14 +33,15 @@ export function movePlow(plow, delta) {
 /**
  * @param {Plow} plow
  * @param {CanvasRenderingContext2D} ctx
+ * @param {DOMHighResTimeStamp} timestamp
  */
-export function drawPlow(plow, ctx) {
-  drawSprite(ctx, 0, 0, 44, 28, plow.x, plow.y, plow.width, plow.height);
+export function drawPlow(plow, ctx, timestamp) {
+  drawSprite(ctx, SPRITE, plow.x, plow.y, Config.plow.scale, timestamp);
 }
 
 /** @param {Plow} plow */
 export function plowDone(plow) {
   return plow.direction === "left"
-    ? plow.x + plow.width < 0
+    ? plow.x + SPRITE.width * Config.plow.scale < 0
     : plow.x > Config.canvas.width;
 }

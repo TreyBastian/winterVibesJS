@@ -1,5 +1,6 @@
 export {};
 declare global {
+  type PlowDirection = "left" | "right" | "random";
   type Config = {
     version: number;
     canvas: {
@@ -19,8 +20,24 @@ declare global {
     };
     plow: {
       speed: number;
-      direction: "left" | "right" | "random";
+      direction: PlowDirection;
+      scale: number;
     };
+  };
+
+  type SpriteFrame = {
+    x: number;
+    y: number;
+    duration: number;
+  };
+
+  type Sprite = {
+    image: HTMLImageElement;
+    width: number;
+    height: number;
+    lastUpdate: number;
+    currentFrame: number;
+    frames: SpriteFrame[];
   };
 
   type Snowflake = {
@@ -42,8 +59,6 @@ declare global {
     speed: number;
     x: number;
     y: number;
-    height: number;
-    width: number;
-    direction: "left" | "right";
+    direction: PlowDirection;
   };
 }

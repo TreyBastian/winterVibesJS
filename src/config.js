@@ -1,15 +1,16 @@
 // default configuration values
 const PARAM_DEFAULTS = [
   { name: "v", value: 1 }, // version
-  { name: "cw", value: 640 }, // canvas width
-  { name: "ch", value: 360 }, // canvas height
+  { name: "cw", value: 320 }, // canvas width
+  { name: "ch", value: 180 }, // canvas height
   { name: "smx", value: 40 }, // snow max
   { name: "smnsz", value: 1 }, // snow min size
   { name: "smxsz", value: 4 }, // snow max size
   { name: "smxspd", value: 0.07 }, // snow max speed
   { name: "snmnspd", value: 0.04 }, // snow min speed
-  { name: "pspd", value: 0.1 }, // plow speed
-  { name: "pd", value: "left" }, // plow direction
+  { name: "plwspd", value: 0.1 }, // plow speed
+  { name: "plwd", value: "left" }, // plow direction
+  { name: "plws", value: 1 }, // plow scale
   { name: "gamax", value: 4 }, // ground accumulator max
   { name: "gas", value: 20 }, // ground accumulatior slices
 ];
@@ -38,9 +39,10 @@ function getConfiguration() {
       minSpeed: parseFloat(urlParams.get("snmnspd")),
     },
     plow: {
-      speed: parseFloat(urlParams.get("pspd")),
+      speed: parseFloat(urlParams.get("plwspd")),
       // @ts-ignore -- I dunno how to get ts / jsdoc to be ok with this
-      direction: urlParams.get("pd"),
+      direction: urlParams.get("plwd"),
+      scale: parseFloat(urlParams.get("plws")),
     },
     groundAccumulator: {
       max: parseInt(urlParams.get("gamax")),

@@ -1,0 +1,65 @@
+{ "frames": [
+   {
+    "filename": "snowplow 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 44, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 44, "h": 28 },
+    "sourceSize": { "w": 44, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "snowplow 1.aseprite",
+    "frame": { "x": 45, "y": 0, "w": 44, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 44, "h": 28 },
+    "sourceSize": { "w": 44, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "snowplow 2.aseprite",
+    "frame": { "x": 90, "y": 0, "w": 44, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 44, "h": 28 },
+    "sourceSize": { "w": 44, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "snowplow 3.aseprite",
+    "frame": { "x": 0, "y": 29, "w": 44, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 44, "h": 28 },
+    "sourceSize": { "w": 44, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "snowplow 4.aseprite",
+    "frame": { "x": 45, "y": 29, "w": 44, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 44, "h": 28 },
+    "sourceSize": { "w": 44, "h": 28 },
+    "duration": 100
+   },
+   {
+    "filename": "snowplow 5.aseprite",
+    "frame": { "x": 90, "y": 29, "w": 44, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 44, "h": 28 },
+    "sourceSize": { "w": 44, "h": 28 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.10.1-x64",
+  "image": "snowplow.png",
+  "format": "RGBA8888",
+  "size": { "w": 134, "h": 57 },
+  "scale": "1"
+ }
+}
