@@ -50,6 +50,7 @@ canvas {
   border-radius: 10px;
   text-decoration: none;
   color: black;
+  display: block;
 }
 
 .context-menu ul li:hover {

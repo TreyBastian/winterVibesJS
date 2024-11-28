@@ -8,7 +8,76 @@
   </head>
   <body>
     <div class="container">
-        <h1>Settings</h1>
+
+      <h1>Settings</h1>
+
+      <form action="/index.html" method="get" class="form-container">
+
+        <input type="hidden" name="v" value="1">
+  
+        <div class="settings-group">
+          <span class="title">Window</span>
+          <div class="separator"></div>
+
+          <label for="cw">Width</label>
+          <input type="number" name="cw" id="cw" placeholder="320">
+  
+          <label for="ch">Height</label>
+          <input type="number" name="ch" id="ch" placeholder="180">
+        </div>
+  
+        <div class="settings-group">
+          <span class="title">Snow</span>
+          <div class="separator"></div>
+
+          <label for="smx">Snow max</label>
+          <input type="number" name="smx" id="smx" placeholder="40">
+  
+          <label for="smnsz">Snow min size</label>
+          <input type="number" name="smnsz" id="smnz" placeholder="1">
+  
+          <label for="smxsz">Snow max size</label>
+          <input type="number" name="smxsz" id="smxsz" placeholder="4">
+  
+          <label for="smxspd">Snow max speed</label>
+          <input type="number" step=".01" name="smxspd" id="smxspd" placeholder="0.07">
+  
+          <label for="snmnspd">Snow min speed</label>
+          <input type="number" step=".01" name="snmnspd" id="snmnspd" placeholder="0.04">
+        </div>
+        
+        <div class="settings-group">
+          <span class="title">Plow</span>
+          <div class="separator"></div>
+
+          <label for="plwspd">Plow speed</label>
+          <input type="number" step=".01" name="plwspd" id="plwspd" placeholder="0.1">
+  
+          <label for="smnsz">Plow direction</label>
+          <select name="plwd" id="plwd" placeholder="left">
+            <option value="left">left</option>
+            <option value="right">right</option>
+            <option value="random">random</option>
+          </select>
+  
+          <label for="plws">Plow scale</label>
+          <input type="number" name="plws" id="plws" placeholder="1">
+        </div>
+  
+        <div class="settings-group">
+          <span class="title">Ground</span>
+          <div class="separator"></div>
+
+          <label for="gamax">Ground accumulator max</label>
+          <input type="number" name="gamax" id="gamax" placeholder="4">
+  
+          <label for="gas">Ground accumulatior slices</label>
+          <input type="number" name="gas" id="gas" placeholder="20">
+        </div>
+  
+        <button type="button" onclick="window.location.href='/'">Cancel</button>
+        <button type="submit" value="submit">Submit</button>
+      </form>
     </div>
   </body>
 </html>
