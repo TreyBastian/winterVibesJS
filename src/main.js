@@ -40,8 +40,6 @@ let lastFrame = 0;
 
 let isPlowing = false;
 
-window.onload = init;
-
 function init() {
   // @ts-ignore -- I dunno how to get ts / jsdoc to be ok with this
   canvas = document.getElementById("main");
@@ -109,3 +107,5 @@ function gameLoop(time) {
   lastFrame = time;
   window.requestAnimationFrame(gameLoop);
 }
+
+init();
