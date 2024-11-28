@@ -20,17 +20,3 @@ function rightClick(e) {
         menu.style.top = e.pageY + "px";
     }
 }
-
-/**
- * @param {string} modalId
- * @param {boolean} isShowing
- */
-function toggleModal(modalId, isShowing) {
-  const modal = document.getElementById(modalId);
-  if (isShowing) {
-    console.log(modalId, isShowing);
-    modal.style.display = isShowing ? 'block' : 'none';
-  }
-}
-
-export { toggleModal };

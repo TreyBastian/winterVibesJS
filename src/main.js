@@ -8,21 +8,7 @@ import {
   resetSnowAccumulator,
 } from "./snow_accumulator.js";
 import { createPlow, drawPlow, movePlow, plowDone } from "./plow.js";
-import { toggleModal } from "./contextMenu";
-
-// Modals & buttons
-const openSettings = document.getElementById('openSettings');
-const openHelp = document.getElementById('openHelp');
-const closeSettings = document.getElementById('closeSettings');
-const closeHelp = document.getElementById('closeHelp');
-
-openSettings.addEventListener('click', () => toggleModal('modalSettings', true));
-openHelp.addEventListener('click', () => toggleModal('modalHelp', true));
-
-// Closing doesn't call the function idk why its stupid... assuming its something to do with DOM 
-closeSettings.addEventListener('click', () => toggleModal('modalSettings', false));
-closeSettings.addEventListener('click', () => console.log('close settings'));
-closeHelp.addEventListener('click', () => toggleModal('modalHelp', false));
+import "./contextMenu.js";
 
 /**
  * @type{Array.<Snowflake>}

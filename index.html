@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./src/style.css" />
+    <link rel="stylesheet" href="./src/styles/main.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Winter Vibes JS</title>
   </head>
@@ -12,42 +12,12 @@
 
       <div id="contextMenu" class="context-menu" style="display:none">
         <ul>
-            <li><a href="#" id="openSettings">Settings</a></li>
-            <li><a href="#" id="openHelp">Help</a></li>
+            <li><a href="src/pages/config.html">Settings</a></li>
+            <li><a href="https://github.com/TreyBastian/winterVibesJS/blob/main/README.md">Help</a></li>
             <li><a href="https://buymeacoffee.com/treysdevshed">Buy me a coffee</a></li>
         </ul>
       </div>
 
-      <div id="modalSettings" class="modal">
-        <div class="modal-content">
-          <div class="modal-header">
-            <span>Settings modal</span>
-          </div>
-          <div class="modal-main">
-            <span>example</span>
-          </div>
-          <div class="model-footer">
-            <button id="closeSettings">Close</button>
-          </div>
-        </div>
-        </div>
-      </div>
-
-      <div id="modalHelp" class="modal">
-        <div class="modal-content">
-          <div class="modal-header">
-            <span>Help modal</span>
-          </div>
-          <div class="modal-main">
-            <span>example</span>
-          </div>
-          <div class="model-footer">
-            <button id="closeHelp">Close</button>
-          </div>
-        </div>
-      </div>
-
-    <script type="module" src="/src/main.js"></script>
     <script type="module" src="./src/main.js"></script>
   </body>
 </html>
