@@ -29,8 +29,8 @@ canvas {
   border-radius: 10px;
   position: absolute;
   text-align: center;
-  background-color: beige;
-  border: 1px solid black;
+  background-color: #1e2a3a;
+  border: 1px solid #555;
 }
 
 .context-menu ul {
@@ -49,11 +49,11 @@ canvas {
 .context-menu ul li a {
   border-radius: 10px;
   text-decoration: none;
-  color: black;
+  color: #e0e0e0;
   display: block;
 }
 
 .context-menu ul li:hover {
   border-radius: 10px;
-  background-color: bisque;
+  background-color: #273950;
 }
