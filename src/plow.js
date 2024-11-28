@@ -1,4 +1,3 @@
-import config from "../vite.config.js";
 import Config from "./config.js";
 import { drawSprite, loadSprite } from "./sprite.js";
 
