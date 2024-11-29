@@ -8,6 +8,7 @@ import {
   resetSnowAccumulator,
 } from "./snow_accumulator.js";
 import { createPlow, drawPlow, movePlow, plowDone } from "./plow.js";
+import "./contextMenu.js";
 
 /**
  * @type{Array.<Snowflake>}

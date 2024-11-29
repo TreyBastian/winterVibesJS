@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+* {
+  font-family: "Pixelify Sans", sans-serif;
+  font-style: normal;
+}
+
+body {
+  background-color: #091e36;
+  min-width: 100vw;
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: #e0e0e0;
+  font-weight: 100;
+}
+
+input {
+  border-radius: 10px;
+  border: 1px solid #555;
+  padding: 5px;
+  background-color: #1c2a3e;
+  color: #e0e0e0;
+}
+
+select {
+  border-radius: 10px;
+  padding: 5px;
+  border: 1px solid #555;
+  background-color: #1c2a3e;
+  color: #e0e0e0;
+}
+
+button {
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #1e2a3a;
+  color: #e0e0e0;
+  border: 1px solid #555;
+}
+
+button:hover {
+  background-color: #273950;
+  cursor: pointer;
+}
+
+.form-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.settings-group {
+  width: 300px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #555;
+  border-radius: 10px;
+  background-color: #1e2a3a;
+  color: #e0e0e0;
+}
+
+.container {
+  text-align: center;
+  width: 650px;
+}
+
+.title {
+  padding: 5px;
+  font-size: 20px;
+  color: #e0e0e0;
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: #555;
+  margin: 10px 0;
+}
