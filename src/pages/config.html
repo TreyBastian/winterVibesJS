@@ -11,7 +11,7 @@
 
       <h1>Settings</h1>
 
-      <form action="/index.html" method="get" class="form-container">
+      <form action="../../index.html" method="get" class="form-container">
 
         <input type="hidden" name="v" value="1">
   
@@ -56,8 +56,8 @@
           <label for="smnsz">Plow direction</label>
           <select name="plwd" id="plwd" placeholder="right" required>
             <option value="left">left</option>
-            <option value="right">right WIP</option>
-            <option value="random">random WIP</option>
+            <option value="right" disabled>right WIP</option>
+            <option value="random" disabled>random WIP</option>
           </select>
   
           <label for="plws">Plow scale</label>
@@ -79,5 +79,7 @@
         <button type="submit" value="submit">Submit</button>
       </form>
     </div>
+
+    <script type="module" src="../getParams.js"></script>
   </body>
 </html>
